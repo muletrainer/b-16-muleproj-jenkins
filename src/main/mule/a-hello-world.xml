@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="553f78b9-0324-4385-a985-6827037fcfdb" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="a-hello-worldFlow" doc:id="a14b3ecc-85c4-4b6a-91e0-351138ace330" >
+		<http:listener doc:name="Listener" doc:id="f2673dd2-fe6c-4a51-8c95-64b8484cc61e" config-ref="HTTP_Listener_config" path="/hai"/>
+		<logger level="INFO" doc:name="Logger" doc:id="7a5a67e1-0679-4b1b-b93e-83375fc20367" message="--- request recevied  ---"/>
+		<set-payload value="Hello All, Welcome to mulesoft !!" doc:name="Set Payload" doc:id="ac52fc04-db26-4df6-abb4-e3254b837946" />
+		<logger level="INFO" doc:name="Logger" doc:id="c963c0e5-a51e-4768-8038-e2d51b10bfc3" message="--- request processed ---"/>
+	</flow>
+	<flow name="my-flow" doc:id="d12e2d35-d9ae-443c-8a27-1b37b8f618fa" >
+		<logger level="INFO" doc:name="Logger" doc:id="3b0f7ade-0e27-4155-979f-0ad32959af2b" message="-- sub flow -- start"/>
+		<ee:transform doc:name="Transform Message" doc:id="47be86e4-bf6a-41eb-aa5b-b1f9a57354a9" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+"Hi " ++ payload ++ ", Good Evening"]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="b36883b1-0bc7-4b7b-ae93-57babc617373" message="-- sub flow -- end"/>
+	</flow>
+</mule>
