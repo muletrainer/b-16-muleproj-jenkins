@@ -33,15 +33,15 @@
 					<cloudHubDeployment>
 				      <uri>https://anypoint.mulesoft.com</uri>
 				      <muleVersion>4.4.0</muleVersion>
-				      <username>kish0322</username>
-				      <password>${password}</password>
+				      <username>kish0422</username>
+				      <password>Kish0422</password>
 				      <applicationName>a-hello-world-mmp</applicationName>
 				      <environment>Sandbox</environment>
 				      <region>us-east-1</region>
 				      <workers>1</workers>
 				      <workerType>micro</workerType>
 				      <properties>
-				        <mule.key>${key}</mule.key>
+				        <mule.key>valuehere</mule.key>
 				        <env>dev</env>
 				      </properties>
 				      <objectStoreV2>true</objectStoreV2>
